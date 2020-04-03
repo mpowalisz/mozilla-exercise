@@ -1,6 +1,8 @@
+// Firefox Image Changer
+
 let myImage = document.querySelector("img");
 
-myImage.onclick = function() {
+myImage.onclick = function () {
   let mySrc = myImage.getAttribute("src");
 
   if (mySrc === "assets/images/firefox.png") {
@@ -10,13 +12,19 @@ myImage.onclick = function() {
   }
 };
 
-let myButtun = document.querySelector("button");
+// Custom Greeting
+
+let myButton = document.querySelector("button");
 let myHeading = document.querySelector("h1");
 
 function setUserName() {
   let myName = prompt("Please enter your name.");
-  localStorage.setItem("name", myName);
-  myHeading.textContent = "Welcome to the Mozilla Exercise, " + myName;
+  if (!myName || myName === null) {
+    setUserName();
+  } else {
+    localStorage.setItem("name", myName);
+    myHeading.textContent = "Welcome to the Mozilla Exercise, " + myName;
+  }
 }
 
 if (!localStorage.getItem("name")) {
@@ -24,4 +32,8 @@ if (!localStorage.getItem("name")) {
 } else {
   let storedName = localStorage.getItem("name");
   myHeading.textContent = "Welcome to the Mozilla Exercise, " + storedName;
+}
+
+myButton.onclick = function () {
+  setUserName();
 }
